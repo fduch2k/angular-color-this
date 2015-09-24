@@ -49,6 +49,7 @@ angular.module('ngColorThis', [])
     return {
       convert: convert,
       toVal: toVal,
+      getContrastColor: getContrastColor,
       rgbToCSS: rgbToCSS
     };
 
