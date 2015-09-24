@@ -31,6 +31,11 @@ angular.module('ngColorThis', [])
 
     }
 
+    function getContrastColor(red, green, blue) {
+      var y = r * 299 + g * 587 + b * 114;
+      return y >=128000 ? '#000000' : '#FFFFFF';
+    }
+
     function toVal(a, b, c) {
       var together = parseInt(a + b + c);
       while (together > 255) together = Math.round(together / 5);
@@ -60,6 +65,9 @@ angular.module('ngColorThis', [])
             var rgb = Color.convert(newValue);
             var css = Color.rgbToCSS(rgb.red, rgb.green, rgb.blue);
             element.css(attrs.colorThis, css);
+            if (attrs.contrastColor) {
+              element.css(attrs.contrastColor, getContrastColor(rgb.red, rgb.green, rgb.blue));
+            }
           }
         }, true);
       }
