@@ -1,4 +1,4 @@
-/*! angular-color-this - v1.0.0 - 2015-05-17
+/*! angular-color-this - v1.0.0 - 2015-09-24
 * http://eknowles.github.io/angular-color-this/
 * Copyright (c) 2015 ; Licensed  */
 
@@ -35,6 +35,11 @@ angular.module('ngColorThis', [])
 
     }
 
+    function getContrastColor(red, green, blue) {
+      var y = red * 299 + green * 587 + blue * 114;
+      return y >=128000 ? '#000000' : '#FFFFFF';
+    }
+
     function toVal(a, b, c) {
       var together = parseInt(a + b + c);
       while (together > 255) together = Math.round(together / 5);
@@ -64,6 +69,9 @@ angular.module('ngColorThis', [])
             var rgb = Color.convert(newValue);
             var css = Color.rgbToCSS(rgb.red, rgb.green, rgb.blue);
             element.css(attrs.colorThis, css);
+            if (attrs.contrastColor) {
+              element.css(attrs.contrastColor, Color.getContrastColor(rgb.red, rgb.green, rgb.blue));
+            }
           }
         }, true);
       }
