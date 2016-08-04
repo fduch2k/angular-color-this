@@ -8,7 +8,6 @@
     "Edward Knowles <mail@eknowles.com>"
   ],
   "main": [
-    "dist/angular-color-this.js",
     "dist/angular-color-this.min.js"
   ],
   "keywords": [
